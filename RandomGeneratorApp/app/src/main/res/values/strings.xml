@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RandomGeneratorApp</string>
+    <string name="window_text">Press the button below to receive a friendly greeting from Android.</string>
+    <string name="button_label">Greet</string>
+    <string name="greeting_text">G R E E T I N G S!</string>
+</resources>
