@@ -3,6 +3,7 @@
     package="wit.assignments.randomgeneratorapp">
 
     <application
+        android:name=".main.MainApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,13 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RandomGeneratorApp">
         <activity
-            android:name=".activities.RandomActivity"
+            android:name=".activities.ItemListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.ItemActivity" android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 

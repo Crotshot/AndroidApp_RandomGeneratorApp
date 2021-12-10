@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ItemActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/orange_1"
+            android:fitsSystemWindows="true"
+            app:elevation="0dip"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarAdd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:titleTextColor="@color/orange_2" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="597dp"
+            android:layout_below="@+id/appBarLayout"
+            android:layout_marginTop="79dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/itemName"
+                    android:layout_width="341dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_itemName"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/purple_700"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/itemWeight"
+                    android:layout_width="341dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_itemWeight"
+                    android:inputType="numberDecimal"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/purple_700"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/addItem"
+                        android:layout_width="144dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/teal_700"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/button_addItem"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/cancel"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/teal_700"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/button_cancel"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
