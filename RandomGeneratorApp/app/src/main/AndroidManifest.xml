@@ -11,8 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RandomGeneratorApp">
         <activity
-            android:name=".activities.ItemListActivity"
-            android:exported="true">
+            android:name=".activities.EntityListActivity" android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".activities.BagListActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,13 +27,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ItemActivity" android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            android:name=".activities.EntityActivity" android:exported="true">
+        </activity>
+        <activity
+            android:name=".activities.BagActivity" android:exported="true">
         </activity>
     </application>
 
 </manifest>
+
+
+<!--<intent-filter>-->
+<!--<action android:name="android.intent.action.MAIN" />-->
+
+<!--<category android:name="android.intent.category.LAUNCHER" />-->
+<!--</intent-filter>-->

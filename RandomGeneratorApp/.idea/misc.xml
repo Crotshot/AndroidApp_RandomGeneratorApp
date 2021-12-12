@@ -6,11 +6,17 @@
         <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
         <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
         <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/activity_Random.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/activity_bag.xml" value="0.33" />
+        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/activity_bag_list.xml" value="0.31354166666666666" />
         <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/activity_item.xml" value="0.33" />
-        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/activity_item_list.xml" value="0.5" />
+        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/activity_item_list.xml" value="0.33" />
         <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/activity_random.xml" value="0.36666666666666664" />
-        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/card_item.xml" value="0.5" />
+        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/card_bag.xml" value="0.31354166666666666" />
+        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/card_entity.xml" value="0.3428442028985507" />
+        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/card_entity_selector.xml" value="0.3428442028985507" />
+        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/layout/card_item.xml" value="0.33" />
         <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/menu/menu_main.xml" value="0.22135416666666666" />
+        <entry key="..\:/AndroidApp_RandomGeneratorApp/RandomGeneratorApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3828125" />
         <entry key="..\:/RandomGeneratorApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
         <entry key="..\:/RandomGeneratorApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
         <entry key="..\:/RandomGeneratorApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />

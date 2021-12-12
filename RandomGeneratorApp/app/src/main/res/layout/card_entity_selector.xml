@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:elevation="24dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/entityName"
+            android:layout_width="216dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/entityWeight"
+            android:textAlignment="center"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/entityWeight"
+            android:layout_width="105dp"
+            android:layout_height="48dp"
+            android:layout_alignEnd="@+id/checkBox"
+            android:layout_marginEnd="55dp"
+            android:textAlignment="center"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            tools:text="Weight" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
