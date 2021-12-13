@@ -5,80 +5,75 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Entity
+import timber.log.Timber
 import wit.assignments.randomgeneratorapp.R
-import wit.assignments.randomgeneratorapp.databinding.ActivityEntityListBinding
+import wit.assignments.randomgeneratorapp.databinding.FragmentEntityListBinding
 import wit.assignments.randomgeneratorapp.databinding.CardEntityBinding
 import wit.assignments.randomgeneratorapp.main.MainApp
 import wit.assignments.randomgeneratorapp.models.EntityModel
 
-class EntityListActivity : AppCompatActivity(), EntityListener {
+class EntityListFragment : Fragment(R.layout.fragment_entity_list), EntityListener {
 
     lateinit var app: MainApp
-    private lateinit var binding: ActivityEntityListBinding
+    private var _binding: FragmentEntityListBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEntityListBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        app = application as MainApp
-
-        val layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = EntityAdapter(app.entities.findAll(),this)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentEntityListBinding.inflate(inflater, container, false)
+
+        app = arguments?.getSerializable("MainApp") as MainApp
+        Timber.i(app.toString())
+        binding.recyclerView.setHasFixedSize(true)
+
+        val layoutManager = LinearLayoutManager(this.context)
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = EntityAdapter(app.entities.findAll(),this)
+
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(entity: MenuItem): Boolean {
         when (entity.itemId) {
             R.id.add_entity_bag -> {
-                val launcherIntent = Intent(this, EntityActivity::class.java)
-                startActivityForResult(launcherIntent,0)
+                val intent = Intent(activity, EntityActivity::class.java)
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(entity)
     }
 
     override fun onEntityClick(entity: EntityModel) {
-        val launcherIntent = Intent(this, EntityActivity::class.java)
-        launcherIntent.putExtra("entity_edit", entity)
-        startActivityForResult(launcherIntent,0)
+        val intent = Intent(activity, EntityActivity::class.java)
+        intent.putExtra("entity_edit", entity)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         binding.recyclerView.adapter?.notifyDataSetChanged()
         super.onActivityResult(requestCode, resultCode, data)
     }
-
-//    var x1 : Float = 0.0f
-//    var x2 : Float = 0.0f
-//    var y1 : Float = 0.0f
-//    var y2 : Float = 0.0f
-//
-//    override fun onTouchEvent(touchEvent : MotionEvent): Boolean {
-//        if(touchEvent.getAction() == MotionEvent.ACTION_DOWN){
-//            x1 = touchEvent.getX()
-//            y1 = touchEvent.getY()
-//        }
-//        else if(touchEvent.getAction() == MotionEvent.ACTION_UP) {
-//            x2 = touchEvent.getX()
-//            y2 = touchEvent.getY()
-//        }
-//
-//        if(x1 < x2 - 20){
-//            val launcherIntent = Intent(this, BagListActivity::class.java)
-//            startActivityForResult(launcherIntent,0)
-//        }else if(x1 > x2 + 20){
-//            val launcherIntent = Intent(this, EntityListActivity::class.java)
-//            startActivityForResult(launcherIntent,0)
-//        }
-//        return false;
-//    }
 }
 
 interface EntityListener {
@@ -112,3 +107,28 @@ class EntityAdapter constructor(private var entities: List<EntityModel>, private
         }
     }
 }
+
+//    var x1 : Float = 0.0f
+//    var x2 : Float = 0.0f
+//    var y1 : Float = 0.0f
+//    var y2 : Float = 0.0f
+//
+//    override fun onTouchEvent(touchEvent : MotionEvent): Boolean {
+//        if(touchEvent.getAction() == MotionEvent.ACTION_DOWN){
+//            x1 = touchEvent.getX()
+//            y1 = touchEvent.getY()
+//        }
+//        else if(touchEvent.getAction() == MotionEvent.ACTION_UP) {
+//            x2 = touchEvent.getX()
+//            y2 = touchEvent.getY()
+//        }
+//
+//        if(x1 < x2 - 20){
+//            val launcherIntent = Intent(this, BagListActivity::class.java)
+//            startActivityForResult(launcherIntent,0)
+//        }else if(x1 > x2 + 20){
+//            val launcherIntent = Intent(this, EntityListActivity::class.java)
+//            startActivityForResult(launcherIntent,0)
+//        }
+//        return false;
+//    }

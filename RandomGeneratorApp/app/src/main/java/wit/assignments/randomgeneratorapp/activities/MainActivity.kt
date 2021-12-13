@@ -32,17 +32,20 @@ class MainActivity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putSerializable("MainApp", app)
 
-        val testFragment2 = TestFragment_2()
+        val entityFragment = EntityListFragment()
         var bagFragment = BagListFragment()
-        bagFragment.arguments = bundle
         val testFragment1 = TestFragment_1()
 
-        setCurrentFragment(testFragment2)//,2)
+        bagFragment.arguments = bundle
+        entityFragment.arguments = bundle
+
+
+        setCurrentFragment(testFragment1)//,2)
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.show_bag_view->setCurrentFragment(bagFragment)//, 3)
-                R.id.show_entity_view->setCurrentFragment(testFragment2)//, 2)
+                R.id.show_entity_view->setCurrentFragment(entityFragment)//, 2)
                 R.id.show_generate_view->setCurrentFragment(testFragment1)//, 1)
             }
             true
