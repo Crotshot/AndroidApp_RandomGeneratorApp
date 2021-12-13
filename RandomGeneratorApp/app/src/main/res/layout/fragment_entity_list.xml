@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.BagListActivity">
+    tools:context=".activities.EntityListFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout2"
@@ -17,7 +17,7 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <SearchView
-            android:id="@+id/bagSearch"
+            android:id="@+id/entitySearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.google.android.material.appbar.AppBarLayout>

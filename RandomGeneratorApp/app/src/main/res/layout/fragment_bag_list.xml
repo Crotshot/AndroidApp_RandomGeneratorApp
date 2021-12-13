@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bagListFrag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.EntityListActivity">
+    tools:context=".activities.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout2"
@@ -17,7 +18,7 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <SearchView
-            android:id="@+id/entitySearch"
+            android:id="@+id/bagSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.google.android.material.appbar.AppBarLayout>
