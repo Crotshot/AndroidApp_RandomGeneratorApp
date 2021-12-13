@@ -2,10 +2,9 @@ package wit.assignments.randomgeneratorapp.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import wit.assignments.randomgeneratorapp.R
@@ -55,6 +54,31 @@ class EntityListActivity : AppCompatActivity(), EntityListener {
         binding.recyclerView.adapter?.notifyDataSetChanged()
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+//    var x1 : Float = 0.0f
+//    var x2 : Float = 0.0f
+//    var y1 : Float = 0.0f
+//    var y2 : Float = 0.0f
+//
+//    override fun onTouchEvent(touchEvent : MotionEvent): Boolean {
+//        if(touchEvent.getAction() == MotionEvent.ACTION_DOWN){
+//            x1 = touchEvent.getX()
+//            y1 = touchEvent.getY()
+//        }
+//        else if(touchEvent.getAction() == MotionEvent.ACTION_UP) {
+//            x2 = touchEvent.getX()
+//            y2 = touchEvent.getY()
+//        }
+//
+//        if(x1 < x2 - 20){
+//            val launcherIntent = Intent(this, BagListActivity::class.java)
+//            startActivityForResult(launcherIntent,0)
+//        }else if(x1 > x2 + 20){
+//            val launcherIntent = Intent(this, EntityListActivity::class.java)
+//            startActivityForResult(launcherIntent,0)
+//        }
+//        return false;
+//    }
 }
 
 interface EntityListener {

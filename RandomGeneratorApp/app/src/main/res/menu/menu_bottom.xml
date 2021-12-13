@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/show_entity_view"
+        android:title="@string/bottom_entity"
+        android:icon="@android:drawable/ic_menu_add"/>
+    <item
+        android:id="@+id/show_generate_view"
+        android:title="@string/bottom_generate"
+        android:icon="@android:drawable/btn_minus"/>
+    <item
+        android:id="@+id/show_bag_view"
+        android:title="@string/bottom_bag"
+        android:icon="@android:drawable/btn_star"/>
+</menu>

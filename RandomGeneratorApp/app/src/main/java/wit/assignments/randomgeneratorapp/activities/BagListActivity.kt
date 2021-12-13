@@ -2,10 +2,7 @@ package wit.assignments.randomgeneratorapp.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +34,13 @@ class BagListActivity : AppCompatActivity(), BagListener {
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+    }
     override fun onOptionsItemSelected(bag: MenuItem): Boolean {
         when (bag.itemId) {
             R.id.add_entity_bag -> {
