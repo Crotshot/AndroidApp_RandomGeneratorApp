@@ -12,6 +12,7 @@ import wit.assignments.randomgeneratorapp.databinding.CardBagBinding
 import wit.assignments.randomgeneratorapp.main.MainApp
 import wit.assignments.randomgeneratorapp.models.BagModel
 import wit.assignments.randomgeneratorapp.models.EntityModel
+import androidx.fragment.app.Fragment
 
 class BagListActivity : AppCompatActivity(), BagListener {
 
