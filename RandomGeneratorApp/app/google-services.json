@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1047264861168",
+    "project_id": "randomgeneratorapp",
+    "storage_bucket": "randomgeneratorapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047264861168:android:5fc8417a94dde293105b35",
+        "android_client_info": {
+          "package_name": "wit.assignments.randomgeneratorapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047264861168-35pm3psokfvu85m1p8vheo0p1hqf16tg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ0YCSoC724ju2miNA8QXo3y_6I1DKOI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047264861168-35pm3psokfvu85m1p8vheo0p1hqf16tg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
