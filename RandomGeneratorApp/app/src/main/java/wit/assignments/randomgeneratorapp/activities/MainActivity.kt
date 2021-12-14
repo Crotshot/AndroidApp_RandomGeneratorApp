@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import timber.log.Timber.i
 import wit.assignments.randomgeneratorapp.R
 import wit.assignments.randomgeneratorapp.databinding.ActivityMainBinding
@@ -18,9 +21,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var app: MainApp
+    private lateinit var analytics: FirebaseAnalytics
+    private lateinit var storage : FirebaseStorage
+    private lateinit var storageRef : StorageReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        analytics = FirebaseAnalytics.getInstance(this)
+        storage = FirebaseStorage.getInstance()
+        storageRef = storage.getReference("/")
 
         setContentView(R.layout.activity_main)
         app = application as MainApp
@@ -38,7 +47,6 @@ class MainActivity : AppCompatActivity() {
 
         bagFragment.arguments = bundle
         entityFragment.arguments = bundle
-
 
         setCurrentFragment(testFragment1)//,2)
 
@@ -60,10 +68,12 @@ class MainActivity : AppCompatActivity() {
 //                commit()
 //            }
 //        else {
-                replace(R.id.flFragment, fragment)
-                commit()
+        analytics.logEvent("Fragment_Swapped", null)
+        replace(R.id.flFragment, fragment)
+        commit()
 //            }
-        }
+    }
+}
 
 //    private var _binding: ActivityMainBinding? = null
 //    private val binding get() = _binding!!
@@ -99,4 +109,3 @@ class MainActivity : AppCompatActivity() {
 //        super.onDestroy()
 //        _binding = null
 //    }
-}
