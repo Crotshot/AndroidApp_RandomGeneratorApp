@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
     }
 
     private fun setCurrentFragment(fragment:Fragment/*, num : Int*/) =  supportFragmentManager.beginTransaction().apply {
