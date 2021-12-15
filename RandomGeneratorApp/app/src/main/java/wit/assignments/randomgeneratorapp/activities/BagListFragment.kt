@@ -2,20 +2,22 @@ package wit.assignments.randomgeneratorapp.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import wit.assignments.randomgeneratorapp.R
 import wit.assignments.randomgeneratorapp.databinding.FragmentBagListBinding
 import wit.assignments.randomgeneratorapp.databinding.CardBagBinding
-import wit.assignments.randomgeneratorapp.main.MainApp
 import wit.assignments.randomgeneratorapp.models.BagModel
 import androidx.fragment.app.Fragment
 import timber.log.Timber.i
+import wit.assignments.randomgeneratorapp.models.BagMemStore
+import java.io.Serializable
 
 class BagListFragment : Fragment(R.layout.fragment_bag_list), BagListener {
 
-    lateinit var app: MainApp
+    lateinit var bags : BagMemStore
     private var _binding: FragmentBagListBinding? = null
     private val binding get() = _binding!!
 
@@ -31,16 +33,16 @@ class BagListFragment : Fragment(R.layout.fragment_bag_list), BagListener {
     ): View? {
         _binding = FragmentBagListBinding.inflate(inflater, container, false)
 
-        app = arguments?.getSerializable("MainApp") as MainApp
-        i(app.toString())
+        bags = arguments?.getSerializable("Bags") as BagMemStore
+        i(bags.toString())
 
-
+        setHasOptionsMenu(true);
         //val recyclerView = activity!!.findViewById<View>(R.id.recyclerView) as RecyclerView
         binding.recyclerView.setHasFixedSize(true)
 
         val layoutManager = LinearLayoutManager(this.context)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = BagAdapter(app.bags.findAll(),this)
+        binding.recyclerView.adapter = BagAdapter(bags.findAll(),this)
 
         //return super.onCreateView(inflater, container, savedInstanceState)
         return binding.root
@@ -77,26 +79,38 @@ class BagListFragment : Fragment(R.layout.fragment_bag_list), BagListener {
             R.id.add_entity_bag -> {
 //                val launcherIntent = Intent(this, BagActivity::class.java)
 //                startActivityForResult(launcherIntent,0)
-                val intent = Intent(activity, BagActivity::class.java)
-                startActivity(intent)
+//                val intent = Intent(activity, BagActivity::class.java)
+//                intent.putExtra("Bags", bags)
+//                startActivity(intent)
+                (activity as MainActivity?)?.BagEditor(null)
             }
         }
         return super.onOptionsItemSelected(bag)
     }
 
     override fun onBagClick(bag: BagModel) {
-        val intent = Intent(activity, BagActivity::class.java)
-        intent.putExtra("bag_edit", bag)
-        startActivity(intent)
-
+        (activity as MainActivity?)?.BagEditor(bag)
+//        val intent = Intent(activity, BagActivity::class.java)
+//        intent.putExtra("bag_edit", bag as Parcelable)
+//        intent.putExtra("Bags", bags)
+//        startActivity(intent)
 //        val launcherIntent = Intent(this, BagActivity::class.java)
 //        launcherIntent.putExtra("bag_edit", bag)
 //        startActivityForResult(launcherIntent, 0)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        binding.recyclerView.adapter?.notifyDataSetChanged()
+//        i("Activity result showed up in BagListFragment")
         super.onActivityResult(requestCode, resultCode, data)
+//        bags = data?.getSerializableExtra("Bags") as BagMemStore
+//
+//        if(data != null){
+//            i("Data is null")
+//        }
+//        else{
+//            i("Data contains some things")
+//        }
+//        binding.recyclerView.adapter?.notifyDataSetChanged()
     }
 }
 

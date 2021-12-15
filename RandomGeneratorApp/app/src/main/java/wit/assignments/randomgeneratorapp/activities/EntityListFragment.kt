@@ -1,24 +1,21 @@
 package wit.assignments.randomgeneratorapp.activities
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.*
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Entity
-import timber.log.Timber
+import timber.log.Timber.i
 import wit.assignments.randomgeneratorapp.R
 import wit.assignments.randomgeneratorapp.databinding.FragmentEntityListBinding
 import wit.assignments.randomgeneratorapp.databinding.CardEntityBinding
-import wit.assignments.randomgeneratorapp.main.MainApp
+import wit.assignments.randomgeneratorapp.models.EntityMemStore
 import wit.assignments.randomgeneratorapp.models.EntityModel
 
 class EntityListFragment : Fragment(R.layout.fragment_entity_list), EntityListener {
 
-    lateinit var app: MainApp
+    lateinit var entities : EntityMemStore
     private var _binding: FragmentEntityListBinding? = null
     private val binding get() = _binding!!
 
@@ -33,13 +30,13 @@ class EntityListFragment : Fragment(R.layout.fragment_entity_list), EntityListen
     ): View? {
         _binding = FragmentEntityListBinding.inflate(inflater, container, false)
 
-        app = arguments?.getSerializable("MainApp") as MainApp
-        Timber.i(app.toString())
+        entities = arguments?.getSerializable("Entities") as EntityMemStore
+        i(entities.toString())
         binding.recyclerView.setHasFixedSize(true)
 
         val layoutManager = LinearLayoutManager(this.context)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = EntityAdapter(app.entities.findAll(),this)
+        binding.recyclerView.adapter = EntityAdapter(entities.findAll(),this)
 
         return binding.root
     }
@@ -66,7 +63,8 @@ class EntityListFragment : Fragment(R.layout.fragment_entity_list), EntityListen
 
     override fun onEntityClick(entity: EntityModel) {
         val intent = Intent(activity, EntityActivity::class.java)
-        intent.putExtra("entity_edit", entity)
+        intent.putExtra("entity_edit", entity as Parcelable)
+        intent.putExtra("Entities", entities)
         startActivity(intent)
     }
 

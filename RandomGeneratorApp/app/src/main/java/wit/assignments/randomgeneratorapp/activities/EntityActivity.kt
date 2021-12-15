@@ -7,18 +7,23 @@ import wit.assignments.randomgeneratorapp.R
 import wit.assignments.randomgeneratorapp.databinding.ActivityEntityBinding
 import wit.assignments.randomgeneratorapp.models.EntityModel
 import wit.assignments.randomgeneratorapp.main.MainApp
+import wit.assignments.randomgeneratorapp.models.BagMemStore
+import wit.assignments.randomgeneratorapp.models.EntityMemStore
 
 class EntityActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEntityBinding
 
     var entity = EntityModel()
+    var entities = EntityMemStore()
     lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = application as MainApp
         var edit = false
+
+        entities = intent.getSerializableExtra("Entities") as EntityMemStore
 
         binding = ActivityEntityBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -39,9 +44,9 @@ class EntityActivity : AppCompatActivity() {
                 entity.weight = binding.entityWeight.text.toString().toFloat()
             if (entity.name.isNotEmpty() && entity.weight > 0) {
                 if (edit) {
-                    app.entities.update(entity.copy())
+                    entities.update(entity.copy())
                 } else {
-                    app.entities.create(entity.copy())
+                    entities.create(entity.copy())
                 }
                 setResult(RESULT_OK)
                 finish()
