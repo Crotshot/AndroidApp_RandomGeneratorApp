@@ -1,5 +1,6 @@
 package wit.assignments.randomgeneratorapp.models
 
+import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -7,7 +8,7 @@ internal fun generateBagRandomId(): Long {
     return Random().nextLong()
 }
 
-class BagMemStore : BagStore{
+class BagMemStore : BagStore, Serializable{
     var bags = ArrayList<BagModel>()
 
     override fun findAll(): List<BagModel> {

@@ -1,23 +1,28 @@
 package wit.assignments.randomgeneratorapp.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import wit.assignments.randomgeneratorapp.R
 import wit.assignments.randomgeneratorapp.databinding.ActivityBagBinding
 import wit.assignments.randomgeneratorapp.main.MainApp
+import wit.assignments.randomgeneratorapp.models.BagMemStore
 import wit.assignments.randomgeneratorapp.models.BagModel
 
 class BagActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBagBinding
     var bag = BagModel()
-    lateinit var app: MainApp
+    var bags = BagMemStore()
+//    lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        app = application as MainApp
+//        app = application as MainApp
         var edit = false
+
+        bags = intent.getSerializableExtra("Bags") as BagMemStore
 
         binding = ActivityBagBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -37,16 +42,18 @@ class BagActivity : AppCompatActivity() {
 
             if (bag.name.isNotEmpty()) {
                 if (edit) {
-                    app.bags.update(bag.copy())
+                    bags.update(bag.copy())
                 } else {
-                    app.bags.create(bag.copy())
+                    bags.create(bag.copy())
                 }
-                setResult(AppCompatActivity.RESULT_OK)
+                var resultIntent : Intent = Intent()
+                resultIntent.putExtra("Bags", bags)
+                setResult(AppCompatActivity.RESULT_OK, resultIntent)
                 finish()
             } else {
                 Snackbar.make(
                     findViewById(android.R.id.content),
-                    R.string.enter_entity_data,
+                    R.string.enter_bag_data,
                     Snackbar.LENGTH_LONG
                 ).show()
             }
@@ -57,9 +64,8 @@ class BagActivity : AppCompatActivity() {
                 "Item Addition Cancelled",
                 Snackbar.LENGTH_LONG
             ).show()
-            setResult(AppCompatActivity.RESULT_OK)
+            setResult(AppCompatActivity.RESULT_CANCELED)
             finish()
         }
     }
-
 }

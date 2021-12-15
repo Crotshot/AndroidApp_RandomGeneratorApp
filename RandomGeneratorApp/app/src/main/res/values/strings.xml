@@ -5,6 +5,7 @@
 <!--    <string name="greeting_text">G R E E T I N G S!</string>-->
     <string name="button_cancel">Cancel</string>
     <string name="hint_search">Search</string>
+    <string name="signoutin">Sign in/out</string>
 
     <string name="bottom_entity">Entity</string>
     <string name="bottom_generate">Generate</string>
@@ -14,12 +15,12 @@
     <string name="hint_entityName">Item Name</string>
     <string name="hint_entityWeight">Item Weight</string>
     <string name="menu_addEntity">Add Item</string>
-    <string name="button_saveEntity">Save Item</string>
+    <string name="button_saveEntity">Save</string>
     <string name="enter_entity_data">Please enter an item name and a weight greater than 0</string>
 
     <string name="button_addBag">Add Bag</string>
     <string name="hint_bagName">Bag Name</string>
     <string name="menu_addBag">Add Bag</string>
     <string name="button_saveBag">Save Bag</string>
-    <string name="enter_Bag_data">Please Enter a bag name and at least 2 items</string>
+    <string name="enter_bag_data">Please Enter a bag name and at least 2 items</string>
 </resources>

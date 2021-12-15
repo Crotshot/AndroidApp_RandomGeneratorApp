@@ -1,6 +1,7 @@
 package wit.assignments.randomgeneratorapp.models
 
 import timber.log.Timber.i
+import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -8,7 +9,7 @@ internal fun generateItemRandomId(): Long {
     return Random().nextLong()
 }
 
-class EntityMemStore : EntityStore {
+class EntityMemStore : EntityStore, Serializable {
     private val items = ArrayList<EntityModel>()
 
     override fun findAll(): List<EntityModel> {
