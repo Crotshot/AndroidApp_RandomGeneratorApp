@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.os.PersistableBundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentFactory
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.internal.ContextUtils.getActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import timber.log.Timber
 import timber.log.Timber.i
@@ -31,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     val entityFragment = EntityListFragment()
     val bagFragment = BagListFragment()
-    val testFragment1 = TestFragment_1()
+    val generateFragment = GenerateSettingsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,22 +64,27 @@ class MainActivity : AppCompatActivity() {
         bagFragment.arguments = bagBundle
         entityFragment.arguments = entityBundle
 
-        setCurrentFragment(testFragment1)//,2)
+        setCurrentFragment(generateFragment)//,2)
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.show_bag_view->setCurrentFragment(bagFragment)//, 3)
                 R.id.show_entity_view->setCurrentFragment(entityFragment)//, 2)
-                R.id.show_generate_view->setCurrentFragment(testFragment1)//, 1)
+                R.id.show_generate_view->setCurrentFragment(generateFragment)//, 1)
             }
             true
         }
+
+        val intent = Intent(this, SignInActivity::class.java)
+        i("=-=--=-=-=--=-=-=--=-=--==--==-=-=-=-=-==-=-=-=-> Going to Sign in View <-=--=-=-=--=-=-=--=-=--==--==-=-=-=-=-==-=-=-=-")
+        startActivityForResult(intent,3)
     }
 
     private fun setCurrentFragment(fragment:Fragment/*, num : Int*/) =  supportFragmentManager.beginTransaction().apply {
         analytics.logEvent("Fragment_Swapped", null)
         replace(R.id.flFragment, fragment, "CurrentFrag")
-        commit()
+        commitAllowingStateLoss()
+    //commit()
     }
 
     fun BagEditor(bag: BagModel?){
@@ -86,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("bag_edit", bag as Parcelable)
         }
         i("=-=--=-=-=--=-=-=--=-=--==--==-=-=-=-=-==-=-=-=-> Creating/Editing a Bag <-=--=-=-=--=-=-=--=-=--==--==-=-=-=-=-==-=-=-=-")
-        startActivityForResult(intent,0)//getActivity(this).
+        startActivityForResult(intent,0)
     }
 
     fun EntityEditor(entity: EntityModel?){
@@ -96,26 +104,51 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("entity_edit", entity as Parcelable)
         }
         i("=-=--=-=-=--=-=-=--=-=--==--==-=-=-=-=-==-=-=-=-> Creating/Editing a Entity <-=--=-=-=--=-=-=--=-=--==--==-=-=-=-=-==-=-=-=-")
-        startActivityForResult(intent,1)//getActivity(this).
+        startActivityForResult(intent,1)
+    }
+
+    fun GenerateView(){
+        val intent = Intent(this, GenerateActivity::class.java)
+        intent.putExtra("Entities", entities)
+        intent.putExtra("Bags", bags)
+        i("=-=--=-=-=--=-=-=--=-=--==--==-=-=-=-=-==-=-=-=-> Going to Generation View <-=--=-=-=--=-=-=--=-=--==--==-=-=-=-=-==-=-=-=-")
+        startActivityForResult(intent,2)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         i("Activity result recieved")
-        if(requestCode == 0){
-            bags = data?.getSerializableExtra("Bags") as BagMemStore
-            bagBundle.putSerializable("Bags", bags)
-            bagFragment.arguments = bagBundle
-            setCurrentFragment(bagFragment)
-        }else if(requestCode == 1){
-            entities = data?.getSerializableExtra("Entities") as EntityMemStore
-            entityBundle.putSerializable("Entities", entities)
-            entityFragment.arguments = entityBundle
-            setCurrentFragment(entityFragment)
+        var fragTrans : FragmentTransaction = supportFragmentManager.beginTransaction()
+        if(data != null){
+            if(requestCode == 0){ //Returning from Bag Activity
+                bags = data?.getSerializableExtra("Bags") as BagMemStore
+                bagBundle.putSerializable("Bags", bags)
+                bagFragment.arguments!!.putAll(bagBundle)
+                fragTrans.detach(bagFragment)
+                fragTrans.attach(bagFragment)
+            }else if(requestCode == 1){ //Returning from Entity Activity
+                entities = data?.getSerializableExtra("Entities") as EntityMemStore
+                entityBundle.putSerializable("Entities", entities)
+                entityFragment.arguments!!.putAll(entityBundle)
+                fragTrans.detach(entityFragment)
+                fragTrans.attach(entityFragment)
+            }else if(requestCode == 2){ //Returning from Generate Activity
+                //Nothing is changed upon returning from Generate Activity, this is here just in case that changes in future
+            }
+        }else{
+            if(requestCode == 3){
+                Snackbar.make(
+                    findViewById(android.R.id.content),
+                    "Welcome!",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
         }
+        fragTrans.commitAllowingStateLoss()
         super.onActivityResult(requestCode, resultCode, data)
     }
 
 //    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
 ////        super.onSaveInstanceState(outState, outPersistentState)
 //    }
+
 }

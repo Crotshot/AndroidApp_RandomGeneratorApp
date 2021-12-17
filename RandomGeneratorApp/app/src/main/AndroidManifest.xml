@@ -27,6 +27,9 @@
         <activity
             android:name=".activities.SignInActivity" android:exported="true" android:windowSoftInputMode="adjustPan">
         </activity>
+        <activity
+            android:name=".activities.GenerateActivity" android:exported="true" android:windowSoftInputMode="adjustPan">
+        </activity>
     </application>
 
 </manifest>
