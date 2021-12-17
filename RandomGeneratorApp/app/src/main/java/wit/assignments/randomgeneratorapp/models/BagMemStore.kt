@@ -24,6 +24,12 @@ class BagMemStore : BagStore, Serializable{
         bags.add(bag)//Add a list to the Item List Array List
     }
 
+    override fun replace(bas: ArrayList<BagModel>) {
+        for(bag in bas){
+            bags.add(bag)
+        }
+    }
+
     override fun update(bag: BagModel) {
         val locbag = findOne(bag.id)
         if (locbag != null) {

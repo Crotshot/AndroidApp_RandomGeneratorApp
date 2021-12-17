@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import wit.assignments.randomgeneratorapp.R
 import wit.assignments.randomgeneratorapp.databinding.ActivityBagBinding
-import wit.assignments.randomgeneratorapp.main.MainApp
 import wit.assignments.randomgeneratorapp.models.BagMemStore
 import wit.assignments.randomgeneratorapp.models.BagModel
 
@@ -19,7 +18,6 @@ class BagActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        app = application as MainApp
         var edit = false
 
         bags = intent.getSerializableExtra("Bags") as BagMemStore
@@ -37,8 +35,6 @@ class BagActivity : AppCompatActivity() {
 
         binding.addBag.setOnClickListener {
             bag.name = binding.bagName.text.toString()
-
-            //TODO ---------Check item count is at least 2
 
             if (bag.name.isNotEmpty()) {
                 if (edit) {

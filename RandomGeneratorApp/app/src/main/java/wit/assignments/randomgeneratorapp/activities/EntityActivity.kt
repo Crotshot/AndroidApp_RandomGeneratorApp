@@ -7,10 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import wit.assignments.randomgeneratorapp.R
 import wit.assignments.randomgeneratorapp.databinding.ActivityEntityBinding
 import wit.assignments.randomgeneratorapp.models.EntityModel
-import wit.assignments.randomgeneratorapp.main.MainApp
-import wit.assignments.randomgeneratorapp.models.BagMemStore
 import wit.assignments.randomgeneratorapp.models.EntityMemStore
-import java.io.Serializable
 
 class EntityActivity : AppCompatActivity() {
 

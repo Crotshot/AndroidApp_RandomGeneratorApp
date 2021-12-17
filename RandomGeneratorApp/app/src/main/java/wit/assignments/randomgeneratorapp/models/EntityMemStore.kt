@@ -23,7 +23,12 @@ class EntityMemStore : EntityStore, Serializable {
     override fun create(entity: EntityModel) {
         entity.id = generateItemRandomId()
         items.add(entity)
-        logAll()
+    }
+
+    override fun replace(entities: ArrayList<EntityModel>) {
+        for(entity in entities){
+            items.add(entity)
+        }
     }
 
     override fun update(entity: EntityModel) {

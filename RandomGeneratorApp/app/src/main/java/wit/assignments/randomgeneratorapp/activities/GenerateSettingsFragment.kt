@@ -1,19 +1,12 @@
 package wit.assignments.randomgeneratorapp.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
-import timber.log.Timber
 import wit.assignments.randomgeneratorapp.R
-import wit.assignments.randomgeneratorapp.databinding.FragmentEntityListBinding
 import wit.assignments.randomgeneratorapp.databinding.FragmentGenerateSettingsBinding
-import wit.assignments.randomgeneratorapp.models.EntityMemStore
 
 class GenerateSettingsFragment : Fragment(R.layout.fragment_generate_settings){
     private var _binding: FragmentGenerateSettingsBinding? = null
