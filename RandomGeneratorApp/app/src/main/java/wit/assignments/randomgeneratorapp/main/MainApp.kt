@@ -13,6 +13,6 @@ class MainApp : Application(), Serializable {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        i("Item started")
+        i("App Starting")
     }
 }

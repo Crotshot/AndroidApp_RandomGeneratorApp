@@ -49,7 +49,6 @@ class SignInActivity : AppCompatActivity(){
     override fun onStart() {
         val account = GoogleSignIn.getLastSignedInAccount(this)
         val currentUser = auth.currentUser
-        //updateUI(currentUser)
         super.onStart()
     }
 
@@ -66,14 +65,10 @@ class SignInActivity : AppCompatActivity(){
             val exception = task.exception
             if(task.isSuccessful) {
                 try {
-                    // Google Sign In was successful, authenticate with Firebase
                     val account = task.getResult(ApiException::class.java)!!
                     Timber.i("firebaseAuthWithGoogle:%s", account.id)
-                    //if(account.idToken != null) {
-                        firebaseAuthWithGoogle(account.idToken!!)
-                    //}
+                    firebaseAuthWithGoogle(account.idToken!!)
                 } catch (e: ApiException) {
-                    // Google Sign In failed, update UI appropriately
                     Timber.i("Google sign in failed")
                 }
             }
@@ -88,7 +83,6 @@ class SignInActivity : AppCompatActivity(){
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
                     Timber.i("signInWithCredential:success")
 
                     var userId = auth.currentUser?.uid
