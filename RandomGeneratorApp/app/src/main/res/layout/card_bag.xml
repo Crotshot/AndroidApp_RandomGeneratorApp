@@ -9,28 +9,28 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="31dp">
 
         <TextView
             android:id="@+id/bagName"
-            android:layout_width="189dp"
-            android:layout_height="56dp"
-            android:layout_alignParentTop="true"
-            android:textSize="30sp"
+            android:layout_width="249dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="150dp"
+            android:textSize="14sp"
             tools:text="Name" />
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="175dp"
-            android:layout_height="54dp"
+            android:layout_width="127dp"
+            android:layout_height="match_parent"
             android:layout_below="@id/bagName"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="-57dp"
-            android:layout_marginEnd="5dp"
-            android:layout_toEndOf="@+id/bagName"
-            android:textSize="30sp"
+            android:layout_marginTop="-31dp"
+            android:layout_marginEnd="1dp"
+            android:textSize="14sp"
             tools:text="Description" />
 
     </RelativeLayout>

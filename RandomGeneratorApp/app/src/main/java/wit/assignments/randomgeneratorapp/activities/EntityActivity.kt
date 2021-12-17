@@ -1,5 +1,6 @@
 package wit.assignments.randomgeneratorapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -9,6 +10,7 @@ import wit.assignments.randomgeneratorapp.models.EntityModel
 import wit.assignments.randomgeneratorapp.main.MainApp
 import wit.assignments.randomgeneratorapp.models.BagMemStore
 import wit.assignments.randomgeneratorapp.models.EntityMemStore
+import java.io.Serializable
 
 class EntityActivity : AppCompatActivity() {
 
@@ -16,11 +18,9 @@ class EntityActivity : AppCompatActivity() {
 
     var entity = EntityModel()
     var entities = EntityMemStore()
-    lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        app = application as MainApp
         var edit = false
 
         entities = intent.getSerializableExtra("Entities") as EntityMemStore
@@ -48,7 +48,9 @@ class EntityActivity : AppCompatActivity() {
                 } else {
                     entities.create(entity.copy())
                 }
-                setResult(RESULT_OK)
+                var resultIntent : Intent = Intent()
+                resultIntent.putExtra("Entities", entities)
+                setResult(AppCompatActivity.RESULT_OK, resultIntent)
                 finish()
             } else {
                 Snackbar.make(
@@ -58,6 +60,17 @@ class EntityActivity : AppCompatActivity() {
                 ).show()
             }
         }
+
+        binding.deleteEntity.setOnClickListener {
+
+            entities.delete(entity)
+
+            var resultIntent : Intent = Intent()
+            resultIntent.putExtra("Entities", entities)
+            setResult(AppCompatActivity.RESULT_OK, resultIntent)
+            finish()
+        }
+
         binding.cancelEntity.setOnClickListener {
             Snackbar.make(
                 findViewById(android.R.id.content),

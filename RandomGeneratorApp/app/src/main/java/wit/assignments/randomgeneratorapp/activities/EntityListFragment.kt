@@ -34,6 +34,8 @@ class EntityListFragment : Fragment(R.layout.fragment_entity_list), EntityListen
         i(entities.toString())
         binding.recyclerView.setHasFixedSize(true)
 
+        setHasOptionsMenu(true);
+
         val layoutManager = LinearLayoutManager(this.context)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = EntityAdapter(entities.findAll(),this)
@@ -54,18 +56,20 @@ class EntityListFragment : Fragment(R.layout.fragment_entity_list), EntityListen
     override fun onOptionsItemSelected(entity: MenuItem): Boolean {
         when (entity.itemId) {
             R.id.add_entity_bag -> {
-                val intent = Intent(activity, EntityActivity::class.java)
-                startActivity(intent)
+//                val intent = Intent(activity, EntityActivity::class.java)
+//                startActivity(intent)
+                (activity as MainActivity?)?.EntityEditor(null)
             }
         }
         return super.onOptionsItemSelected(entity)
     }
 
     override fun onEntityClick(entity: EntityModel) {
-        val intent = Intent(activity, EntityActivity::class.java)
-        intent.putExtra("entity_edit", entity as Parcelable)
-        intent.putExtra("Entities", entities)
-        startActivity(intent)
+        (activity as MainActivity?)?.EntityEditor(entity)
+//        val intent = Intent(activity, EntityActivity::class.java)
+//        intent.putExtra("entity_edit", entity as Parcelable)
+//        intent.putExtra("Entities", entities)
+//        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

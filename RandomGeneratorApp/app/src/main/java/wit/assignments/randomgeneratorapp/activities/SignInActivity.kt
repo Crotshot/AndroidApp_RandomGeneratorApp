@@ -19,7 +19,7 @@ import wit.assignments.randomgeneratorapp.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity(){
     companion object{
-        private const val RC_SIGN_IN = 839147
+        private const val RC_SIGN_IN = 0
     }
 
     private lateinit var binding: ActivitySignInBinding
@@ -33,6 +33,7 @@ class SignInActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("1047264861168-35pm3psokfvu85m1p8vheo0p1hqf16tg.apps.googleusercontent.com")
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -40,7 +41,7 @@ class SignInActivity : AppCompatActivity(){
         analytics = FirebaseAnalytics.getInstance(this)
         storage = FirebaseStorage.getInstance()
         storageRef = storage.getReference("/")
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
 
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -75,7 +76,9 @@ class SignInActivity : AppCompatActivity(){
                     // Google Sign In was successful, authenticate with Firebase
                     val account = task.getResult(ApiException::class.java)!!
                     Timber.i("firebaseAuthWithGoogle:%s", account.id)
-                    firebaseAuthWithGoogle(account.idToken!!)
+                    //if(account.idToken != null) {
+                        firebaseAuthWithGoogle(account.idToken!!)
+                    //}
                 } catch (e: ApiException) {
                     // Google Sign In failed, update UI appropriately
                     Timber.i("Google sign in failed")
@@ -95,8 +98,10 @@ class SignInActivity : AppCompatActivity(){
                     // Sign in success, update UI with the signed-in user's information
                     Timber.i("signInWithCredential:success")
 
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    //var resultIntent : Intent = Intent()
+                    //resultIntent.putExtra("Bags", bags)
+                    setResult(AppCompatActivity.RESULT_OK)//, resultIntent)
+                    finish()
 
 //                    updateUI(user)
                 } else {

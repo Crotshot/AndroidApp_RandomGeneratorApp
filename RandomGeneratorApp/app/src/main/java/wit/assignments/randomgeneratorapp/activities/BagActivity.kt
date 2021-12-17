@@ -58,6 +58,16 @@ class BagActivity : AppCompatActivity() {
                 ).show()
             }
         }
+
+        binding.deleteBag.setOnClickListener {
+            bags.delete(bag)
+
+            var resultIntent : Intent = Intent()
+            resultIntent.putExtra("Bags", bags)
+            setResult(AppCompatActivity.RESULT_OK, resultIntent)
+            finish()
+        }
+
         binding.cancelBag.setOnClickListener {
             Snackbar.make(
                 findViewById(android.R.id.content),
