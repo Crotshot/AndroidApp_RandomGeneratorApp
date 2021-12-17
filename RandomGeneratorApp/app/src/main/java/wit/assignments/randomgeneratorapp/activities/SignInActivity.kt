@@ -10,10 +10,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import timber.log.Timber
 import wit.assignments.randomgeneratorapp.databinding.ActivitySignInBinding
 
@@ -25,7 +22,6 @@ class SignInActivity : AppCompatActivity(){
     private lateinit var binding: ActivitySignInBinding
     private lateinit var analytics: FirebaseAnalytics
     private lateinit var storage : FirebaseStorage
-    private lateinit var storageRef : StorageReference
     private lateinit var mGoogleSignInClient : GoogleSignInClient
     private lateinit var auth: FirebaseAuth
 
@@ -39,9 +35,8 @@ class SignInActivity : AppCompatActivity(){
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         analytics = FirebaseAnalytics.getInstance(this)
-        storage = FirebaseStorage.getInstance()
-        storageRef = storage.getReference("/")
         auth = FirebaseAuth.getInstance()
+
 
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -66,8 +61,6 @@ class SignInActivity : AppCompatActivity(){
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val exception = task.exception
@@ -98,18 +91,15 @@ class SignInActivity : AppCompatActivity(){
                     // Sign in success, update UI with the signed-in user's information
                     Timber.i("signInWithCredential:success")
 
-                    //var resultIntent : Intent = Intent()
-                    //resultIntent.putExtra("Bags", bags)
-                    setResult(AppCompatActivity.RESULT_OK)//, resultIntent)
-                    finish()
+                    var userId = auth.currentUser?.uid
 
-//                    updateUI(user)
+                    var resultIntent : Intent = Intent()
+                    resultIntent.putExtra("userId", userId)
+                    setResult(AppCompatActivity.RESULT_OK, resultIntent)
+                    finish()
                 } else {
-                    // If sign in fails, display a message to the user.
                     Timber.i("signInWithCredential:failure%s", task.exception)
-//                    updateUI(null)
                 }
             }
     }
-
 }

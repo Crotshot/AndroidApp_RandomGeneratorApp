@@ -56,8 +56,6 @@ class EntityListFragment : Fragment(R.layout.fragment_entity_list), EntityListen
     override fun onOptionsItemSelected(entity: MenuItem): Boolean {
         when (entity.itemId) {
             R.id.add_entity_bag -> {
-//                val intent = Intent(activity, EntityActivity::class.java)
-//                startActivity(intent)
                 (activity as MainActivity?)?.EntityEditor(null)
             }
         }
@@ -66,10 +64,6 @@ class EntityListFragment : Fragment(R.layout.fragment_entity_list), EntityListen
 
     override fun onEntityClick(entity: EntityModel) {
         (activity as MainActivity?)?.EntityEditor(entity)
-//        val intent = Intent(activity, EntityActivity::class.java)
-//        intent.putExtra("entity_edit", entity as Parcelable)
-//        intent.putExtra("Entities", entities)
-//        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -109,28 +103,3 @@ class EntityAdapter constructor(private var entities: List<EntityModel>, private
         }
     }
 }
-
-//    var x1 : Float = 0.0f
-//    var x2 : Float = 0.0f
-//    var y1 : Float = 0.0f
-//    var y2 : Float = 0.0f
-//
-//    override fun onTouchEvent(touchEvent : MotionEvent): Boolean {
-//        if(touchEvent.getAction() == MotionEvent.ACTION_DOWN){
-//            x1 = touchEvent.getX()
-//            y1 = touchEvent.getY()
-//        }
-//        else if(touchEvent.getAction() == MotionEvent.ACTION_UP) {
-//            x2 = touchEvent.getX()
-//            y2 = touchEvent.getY()
-//        }
-//
-//        if(x1 < x2 - 20){
-//            val launcherIntent = Intent(this, BagListActivity::class.java)
-//            startActivityForResult(launcherIntent,0)
-//        }else if(x1 > x2 + 20){
-//            val launcherIntent = Intent(this, EntityListActivity::class.java)
-//            startActivityForResult(launcherIntent,0)
-//        }
-//        return false;
-//    }

@@ -5,7 +5,7 @@ interface BagStore {
     fun findOne(id: Long): BagModel?
     fun create(bag: BagModel)
     fun update(bag: BagModel)
+    fun replace(bags: ArrayList<BagModel>)
     fun delete(bag: BagModel)
     fun deleteAll(bags: BagMemStore)
-    //fun deleteAll(bags: BagJSONStore)
 }

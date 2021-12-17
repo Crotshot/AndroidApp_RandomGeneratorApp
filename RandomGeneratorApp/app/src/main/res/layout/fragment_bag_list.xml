@@ -21,13 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-<!--            <androidx.appcompat.widget.Toolbar-->
-<!--                android:id="@+id/toolbarAdd"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:menu="@menu/menu_main"-->
-<!--                app:titleTextColor="@color/orange_2" />-->
-
             <SearchView
                 android:id="@+id/bagSearch"
                 android:layout_width="332dp"

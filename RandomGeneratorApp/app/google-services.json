@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1047264861168",
+    "firebase_url": "https://randomgeneratorapp-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "randomgeneratorapp",
     "storage_bucket": "randomgeneratorapp.appspot.com"
   },

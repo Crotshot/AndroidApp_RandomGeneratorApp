@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import wit.assignments.randomgeneratorapp.R
 import wit.assignments.randomgeneratorapp.databinding.ActivityBagBinding
-import wit.assignments.randomgeneratorapp.main.MainApp
 import wit.assignments.randomgeneratorapp.models.BagMemStore
 import wit.assignments.randomgeneratorapp.models.BagModel
 
